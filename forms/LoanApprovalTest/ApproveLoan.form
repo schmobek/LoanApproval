@@ -1,0 +1,48 @@
+{
+    "id": "approveloan",
+    "schemaVersion": "1.0.0",
+    "name": "ApproveLoan",
+    "revision": "1.0",
+    "type": "task",
+    "readOnly": false,
+    "content": [
+        {
+            "id": "application_amount",
+            "type": "float",
+            "label": "Application Amount",
+            "readOnly": true,
+            "value": "${context.amount}",
+            "constraints": {
+                "required": false
+            }
+        },
+        {
+            "id": "currency",
+            "type": "string",
+            "label": "Currency",
+            "readOnly": true,
+            "value": "${context.currency}",
+            "control": {
+                "type": "TextArea",
+                "properties": {
+                    "height": "small"
+                }
+            },
+            "constraints": {
+                "required": false
+            }
+        }
+    ],
+    "decisions": [
+        {
+            "id": "reject",
+            "text": "Reject",
+            "decisionType": "negative"
+        },
+        {
+            "id": "approve",
+            "text": "Approve",
+            "decisionType": "positive"
+        }
+    ]
+}

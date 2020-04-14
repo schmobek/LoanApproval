@@ -1,0 +1,36 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="ifb.loan.LoanApplication.controller.mainView" displayBlock="true">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="Credit Request Application">
+					<content>
+						<sap.ui.layout.form:SimpleForm xmlns:sap.ui.layout.form="sap.ui.layout.form" xmlns:sap.ui.core="sap.ui.core" editable="true" layout="ResponsiveGridLayout" id="form0">
+							<sap.ui.layout.form:content>
+								<sap.ui.core:Title text="Customer Details" id="title0"/>
+								<Label text="First Name" id="labelUserFirstName"/>
+								<Input width="30%" id="FirstName" value="{LoanApplication>/FirstName}"/>
+								<Label text="Last Name" id="labelUserLastName"/>
+								<Input width="30%" id="LastName" value="{LoanApplication>/LastName}"/>
+								<Label text="Date Of Birth" id="labelUserDateOfBirth"/>
+								<Input width="30%" id="DateOfBirth" type="Date" value="{LoanApplication>/DOB}"/>
+								<Label text="Address" id="labelUserAddress"/>
+								<Input width="30%" id="Address" value="{LoanApplication>/Address}"/>
+								<Label text="Income" id="labelUserIncome"/>
+								<Input width="30%" id="Income" type="Number" value="{LoanApplication>/Income}"/>
+								<Label text="Requested Loan Amount" id="labelUserRequestLoanAmount"/>
+								<Input width="30%" id="RequestedLoanAmount" type="Number" value="{LoanApplication>/Amount}"/>
+							</sap.ui.layout.form:content>
+						</sap.ui.layout.form:SimpleForm>
+					</content>
+					<footer>
+						<Bar id="__bar0">
+							<contentRight>
+								<Button xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" text="Submit" width="100px" id="__submit" type="Accept" press="submitRequest"/>
+							</contentRight>
+						</Bar>
+					</footer>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

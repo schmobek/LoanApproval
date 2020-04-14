@@ -1,0 +1,6 @@
+{
+  "applicant":{ "PartnerID": "4711", "Rating": "AAB", "FirstName": "John", "LastName": "Doe" },
+  "amount": 10000.00,
+  "income": 50000.00,
+  "currency": "USD"
+}
