@@ -5,54 +5,52 @@ sap.ui.define([
 
 	return Controller.extend("ifb.loan.LoanApplication.controller.mainView", {
 		submitRequest: function () {
-			//var userModel = this.getView().getModel("user");
-			var loanModel = this.getView().getModel("loanapplication");
-
-			var context = JSON.stringify({
-				"definitionId": "loanapprovaltest",
-				"context": {
-					"applicant": {
-						"PartnerID": "4711",
-						"Rating": "AAB",
-						"FirstName": loanModel.oData.FirstName,
-						"LastName": loanModel.oData.LastName
-					},
-					"amount": loanModel.oData.Amount,
-					"income": loanModel.oData.Income,
-					"currency": "USD"
+			var token = this._fetchToken();
+			this._startInstance(token);
+		},
+		_fetchToken: function () {
+			var token;
+			$.ajax({
+				url: "/bpmworkflowruntime/rest/v1/xsrf-token",
+				method: "GET",
+				async: false,
+				headers: {
+					"X-CSRF-Token": "Fetch"
+				},
+				success: function (result, xhr, data) {
+					token = data.getResponseHeader("X-CSRF-Token");
 				}
 			});
+			return token;
+		},
 
+		_startInstance: function (token) {
+			var loanModel = this.getView().getModel("loanapplication");
 			$.ajax({
-				type: "GET",
-				url: "/bpmworkflowruntime/v1/xsrf-token",
+				url: "/bpmworkflowruntime/rest/v1/workflow-instances",
+				method: "POST",
+				async: false,
+				contentType: "application/json",
 				headers: {
-					"x-csrf-token": "Fetch"
+					"X-CSRF-Token": token
 				},
-				success: function (data, statusText, xhr) {
-					var token = xhr.getResponseHeader("X-CSRF-Token");
-
-					$.ajax({
-						type: "POST",
-						url: "/bpmworkflowruntime/v1/workflow-instances",
-						data: context,
-						headers: {
-							"x-csrf-token": token
+				data: JSON.stringify({
+					"definitionId": "loanapproval",
+					"context": {
+						"applicant": {
+							"PartnerID": "4711",
+							"Rating": "AAB",
+							"FirstName": loanModel.oData.FirstName,
+							"LastName": loanModel.oData.LastName
 						},
-						success: function () {
-							sap.m.MessageToast.show("Your user creation request has been submitted for approval!");
-						},
-						error: function (errMsg) {
-							sap.m.MessageToast.show("XSRF token request didn't work: " + errMsg.statusText);
-						},
-						dataType: "json",
-						contentType: "application/json"
-					});
-				},
-				error: function (errMsg) {
-					sap.m.MessageToast.show("Didn't work: " + errMsg.statusText);
-				},
-				contentType: "application/json"
+						"amount": loanModel.oData.Amount,
+						"income": loanModel.oData.Income,
+						"currency": "USD"
+					}
+				}),
+				success: function (result, xhr, data) {
+					loanModel.setProperty("/result", JSON.stringify(result, null, 4));
+				}
 			});
 		}
 	});
