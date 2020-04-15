@@ -88,7 +88,7 @@
 			"description": "The following loan application was requested by ${context.applicant.FirstName} ${context.applicant.LastName}. Please validate and process ",
 			"priority": "MEDIUM",
 			"isHiddenInLogForParticipant": false,
-			"userInterface": "sapui5://comsapbpmworkflow.comsapbpmwusformplayer/com.sap.bpm.wus.form.player",
+			"userInterface": "sapui5://html5apps/bpmformplayer/com.sap.bpm.wus.form.player",
 			"recipientUsers": "S0013821860",
 			"formReference": "/forms/LoanApproval/ApproveLoan.form",
 			"userInterfaceParams": [{
@@ -115,7 +115,7 @@
 		},
 		"38371633-79b0-4ab9-bbde-cca31c75d815": {
 			"classDefinition": "com.sap.bpm.wfs.ScriptTask",
-			"reference": "/scripts/LoanApprovalTest/PrepareRules.js",
+			"reference": "/scripts/LoanApproval/PrepareRules.js",
 			"id": "scripttask1",
 			"name": "PrepareRules",
 			"documentation": "Prepare for rule mapping"
@@ -197,7 +197,7 @@
 		},
 		"7209c59b-270f-425e-ac71-6e516a90da52": {
 			"classDefinition": "com.sap.bpm.wfs.SampleContext",
-			"reference": "/sample-data/LoanApprovalTest/LoanRequestData.json",
+			"reference": "/sample-data/LoanApproval/LoanRequestData.json",
 			"id": "default-start-context"
 		},
 		"9423d4f5-04e9-42d9-a5f1-4f76fa8bd098": {
