@@ -27,7 +27,7 @@ sap.ui.define([
 			this.setModel(models.createDeviceModel(), "device");
 			
 			// get the context for loan application 
-			this.setModel(models.createLoanApplicationModel(), "loanapplication");
+			this.setModel(models.createLoanApplicationModel(), "LoanApplication");
 		}
 	});
 });

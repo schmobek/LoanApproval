@@ -25,7 +25,7 @@ sap.ui.define([
 		},
 
 		_startInstance: function (token) {
-			var loanModel = this.getView().getModel("loanapplication");
+			var loanModel = this.getView().getModel("LoanApplication");
 			$.ajax({
 				url: "/bpmworkflowruntime/rest/v1/workflow-instances",
 				method: "POST",

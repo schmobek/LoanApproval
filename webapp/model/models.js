@@ -12,7 +12,7 @@ sap.ui.define([
 			return oModel;
 		},
 		createLoanApplicationModel: function () {
-			var oModel = new JSONModel(Device);
+			var oModel = new JSONModel();
 			oModel.setDefaultBindingMode("TwoWay");
 			return oModel;
 		}
