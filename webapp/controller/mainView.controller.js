@@ -1,4 +1,7 @@
 sap.ui.define([
+
+
+
 	"sap/ui/core/mvc/Controller"
 ], function (Controller) {
 	"use strict";
@@ -8,6 +11,7 @@ sap.ui.define([
 			var token = this._fetchToken();
 			this._startInstance(token);
 		},
+		
 		_fetchToken: function () {
 			var token;
 			$.ajax({
@@ -34,17 +38,19 @@ sap.ui.define([
 				headers: {
 					"X-CSRF-Token": token
 				},
+
+				// build up string with numbers ( conversion to float )             
 				data: JSON.stringify({
 					"definitionId": "loanapproval",
 					"context": {
 						"applicant": {
 							"PartnerID": "4711",
 							"Rating": "AAB",
-							"FirstName": loanModel.oData.FirstName,
-							"LastName": loanModel.oData.LastName
+							"FirstName": loanModel.oData.FirstName ,
+							"LastName":  loanModel.oData.LastName,
 						},
-						"amount": loanModel.oData.Amount,
-						"income": loanModel.oData.Income,
+						"amount": parseFloat( loanModel.oData.Amount ) ,
+						"income": parseFloat( loanModel.oData.Income ),
 						"currency": "USD"
 					}
 				}),
